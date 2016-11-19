@@ -1,0 +1,5 @@
+.idea/
+**/*.iml
+target/
+bigfile.mp4
+**/*.fhk2
