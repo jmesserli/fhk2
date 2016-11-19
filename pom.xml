@@ -10,7 +10,7 @@
 
     <properties>
         <kotlin.version>1.0.5-2</kotlin.version>
-        <main.class>nu.peg.fhk2.App</main.class>
+        <main.class>nu.peg.fhk2.AppKt</main.class>
     </properties>
 
     <dependencies>
@@ -20,7 +20,7 @@
             <version>${kotlin.version}</version>
         </dependency>
 
-        <dependency>    
+        <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.55</version>
