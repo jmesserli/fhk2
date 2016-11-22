@@ -2,7 +2,7 @@ package nu.peg.fhk2
 
 import nu.peg.fhk2.cli.getOptions
 import nu.peg.fhk2.internal.FileHaecksler
-import nu.peg.fhk2.internal.FileSizeParser
+import nu.peg.fhk2.util.FileSizeParser
 import org.apache.commons.cli.CommandLine
 import org.apache.commons.cli.DefaultParser
 import org.apache.commons.cli.HelpFormatter
@@ -30,11 +30,12 @@ fun main(args: Array<String>) {
     }
     val partSize = FileSizeParser.parseFileSize(commandLine.getOptionValue('s', "5M"))
     val verify = commandLine.hasOption('v')
+    val deleteSource = commandLine.hasOption('d')
 
     val haecksler = FileHaecksler()
     if (commandLine.hasOption('c')) {
-        haecksler.cutFile(file, partSize, verify)
+        haecksler.cutFile(file, partSize, verify, deleteSource)
     } else if (commandLine.hasOption('m')) {
-        haecksler.mergeFile(file, verify)
+        haecksler.mergeFile(file, verify, deleteSource)
     }
 }

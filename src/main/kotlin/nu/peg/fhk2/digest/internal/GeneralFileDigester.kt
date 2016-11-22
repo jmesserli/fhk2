@@ -1,6 +1,6 @@
-package nu.peg.fhk2.util.internal
+package nu.peg.fhk2.digest.internal
 
-import nu.peg.fhk2.util.FileDigester
+import nu.peg.fhk2.digest.FileDigester
 import org.bouncycastle.crypto.digests.GeneralDigest
 import java.nio.ByteBuffer
 import java.nio.file.Files

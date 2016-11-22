@@ -17,10 +17,16 @@ fun getOptions(): Options {
             .desc("Puts the program into 'merge' mode")
             .build()
 
+
     val cutMergeGroup = OptionGroup()
     cutMergeGroup.isRequired = true
     cutMergeGroup.addOption(cut)
     cutMergeGroup.addOption(merge)
+
+    val deleteSource = Option.builder("d")
+            .longOpt("delete-source")
+            .desc("Deletes the source files that are used for the operation")
+            .build()
 
     val file = Option.builder("f")
             .longOpt("file")
@@ -44,6 +50,7 @@ fun getOptions(): Options {
             .build()
 
     options.addOptionGroup(cutMergeGroup)
+    options.addOption(deleteSource)
     options.addOption(file)
     options.addOption(size)
     options.addOption(verify)

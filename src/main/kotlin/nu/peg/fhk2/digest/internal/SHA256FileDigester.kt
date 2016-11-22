@@ -1,4 +1,4 @@
-package nu.peg.fhk2.util.internal
+package nu.peg.fhk2.digest.internal
 
 import org.bouncycastle.crypto.digests.SHA256Digest
 

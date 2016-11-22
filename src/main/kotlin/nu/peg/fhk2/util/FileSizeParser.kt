@@ -1,17 +1,16 @@
-package nu.peg.fhk2.internal
+package nu.peg.fhk2.util
 
 /**
  * By joel @ 19.11.2016
  */
 object FileSizeParser {
-
     val suffixMultipliers: Map<Char, Double> = mapOf(
-            Pair('k', factor(1) / 8),
-            Pair('K', factor(1)),
-            Pair('m', factor(2) / 8),
-            Pair('M', factor(2)),
-            Pair('g', factor(3) / 8),
-            Pair('G', factor(3))
+            'k' to factor(1) / 8,
+            'K' to factor(1),
+            'm' to factor(2) / 8,
+            'M' to factor(2),
+            'g' to factor(3) / 8,
+            'G' to factor(3)
     )
 
     private fun factor(level: Int): Double {

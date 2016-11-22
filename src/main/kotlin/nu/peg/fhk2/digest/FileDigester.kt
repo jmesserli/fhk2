@@ -1,4 +1,4 @@
-package nu.peg.fhk2.util
+package nu.peg.fhk2.digest
 
 import java.nio.file.Path
 

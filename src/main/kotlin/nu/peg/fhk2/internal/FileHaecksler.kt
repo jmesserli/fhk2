@@ -1,7 +1,7 @@
 package nu.peg.fhk2.internal
 
-import nu.peg.fhk2.util.FileDigester
-import nu.peg.fhk2.util.internal.SHA256FileDigester
+import nu.peg.fhk2.digest.FileDigester
+import nu.peg.fhk2.digest.internal.SHA256FileDigester
 import nu.peg.fhk2.util.toHex
 import java.nio.ByteBuffer
 import java.nio.channels.FileChannel
@@ -15,10 +15,10 @@ import java.nio.file.StandardOpenOption
  */
 class FileHaecksler {
     companion object {
-        private val filePattern = Regex("^.*\\.(\\d+|verify)\\.fhk2$")
+        private val filePattern = Regex("^(.*)\\.(\\d+|verify)\\.fhk2$")
     }
 
-    fun cutFile(file: Path, partSize: Long, generateValidateFile: Boolean) {
+    fun cutFile(file: Path, partSize: Long, generateValidateFile: Boolean, deleteSources: Boolean) {
         val totalSize = Files.size(file)
         val parts = Math.ceil(totalSize.toDouble() / partSize).toLong()
         var transferLeft = totalSize
@@ -60,9 +60,16 @@ class FileHaecksler {
             channel.write(digestBuffer)
             channel.close()
         }
+
+        if (deleteSources) {
+            Files.delete(file)
+            println("\nDeleting source file [Done]")
+        }
     }
 
-    fun mergeFile(partFile: Path, verify: Boolean) {
+    fun mergeFile(partFile: Path, verify: Boolean, deleteSources: Boolean) {
+        val matchResult = filePattern.matchEntire(partFile.fileName.toString()) ?: error("The passed source file does not match $filePattern")
+
 
     }
 }
