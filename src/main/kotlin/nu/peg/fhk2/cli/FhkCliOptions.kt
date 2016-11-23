@@ -28,6 +28,11 @@ fun getOptions(): Options {
             .desc("Deletes the source files that are used for the operation")
             .build()
 
+    val verify = Option.builder("v")
+            .longOpt("verify")
+            .desc("Generates a file containing a hash which allows to verify the merged file. In merge mode specifies that the file should be verified")
+            .build()
+
     val file = Option.builder("f")
             .longOpt("file")
             .hasArg()
@@ -44,16 +49,12 @@ fun getOptions(): Options {
             .desc("Specifies the file size of the parts. You can specify suffixes like K, M or G. Defaults to 5M. Not used for merge mode")
             .build()
 
-    val verify = Option.builder("v")
-            .longOpt("verify")
-            .desc("Generates a file containing a hash which allows to verify the merged file. In merge mode specifies that the file should be verified")
-            .build()
 
     options.addOptionGroup(cutMergeGroup)
     options.addOption(deleteSource)
+    options.addOption(verify)
     options.addOption(file)
     options.addOption(size)
-    options.addOption(verify)
 
     return options
 }

@@ -13,7 +13,6 @@ open class GeneralFileDigester(val digest: GeneralDigest, val blockSize: Int) : 
     var hasRun = false
         private set
 
-
     override fun digestFile(file: Path): ByteArray {
         if (hasRun) throw IllegalStateException("You can run an instance of $javaClass only once!")
 
