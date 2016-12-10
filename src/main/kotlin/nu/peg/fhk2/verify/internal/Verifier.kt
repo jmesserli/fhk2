@@ -1,6 +1,7 @@
-package nu.peg.fhk2.verify
+package nu.peg.fhk2.verify.internal
 
 import nu.peg.fhk2.digest.Digest
+import nu.peg.fhk2.verify.Verifier
 import java.nio.ByteBuffer
 import java.nio.file.Files
 import java.nio.file.Path
@@ -9,10 +10,11 @@ import java.nio.file.StandardOpenOption.*
 import java.util.*
 import kotlin.reflect.primaryConstructor
 
-object Verifier {
+object Verifier : Verifier {
     const val VERIFY_FILE_VERSION: Int = 1
+    override fun getVerifyFileVersion(): Int = VERIFY_FILE_VERSION
 
-    fun createVerifyFile(fileToDigest: Path, digestEnum: Digest) {
+    override fun createVerifyFile(fileToDigest: Path, digestEnum: Digest) {
         val digester = digestEnum.digesterClass.primaryConstructor!!.call()
         val digest = digester.digestFile(fileToDigest)
 
@@ -34,7 +36,7 @@ object Verifier {
         channel.close()
     }
 
-    fun verifyFile(verifyFile: Path, fileToVerify: Path): Boolean {
+    override fun verifyFile(verifyFile: Path, fileToVerify: Path): Boolean {
         if (!Files.exists(verifyFile)) error("Verify file does not exist")
 
         val verifyChannel = Files.newByteChannel(verifyFile, READ)
@@ -44,7 +46,7 @@ object Verifier {
         fourBytes.flip()
         val fileVersion = fourBytes.int
         if (fileVersion != VERIFY_FILE_VERSION)
-            error("Verify file version is not supported by this version of the application (file version: $fileVersion, program version: $VERIFY_FILE_VERSION)")
+            error("Verify file version is not supported by this version of the application (file version: $fileVersion, program version: ${VERIFY_FILE_VERSION})")
 
         // Version specific part
         // reuse byte buffer

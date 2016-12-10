@@ -1,7 +1,7 @@
 package nu.peg.fhk2.digest.internal
 
 import nu.peg.fhk2.digest.FileDigester
-import org.bouncycastle.crypto.digests.GeneralDigest
+import org.bouncycastle.crypto.Digest
 import java.nio.ByteBuffer
 import java.nio.file.Files
 import java.nio.file.Path
@@ -9,7 +9,7 @@ import java.nio.file.Path
 /**
  * By joel @ 19.11.2016
  */
-open class GeneralFileDigester(val digest: GeneralDigest, val blockSize: Int) : FileDigester {
+open class GeneralFileDigester(val digest: Digest, val blockSize: Int) : FileDigester {
     var hasRun = false
         private set
 

@@ -2,7 +2,7 @@ package nu.peg.fhk2.internal
 
 import nu.peg.fhk2.digest.Digest
 import nu.peg.fhk2.util.FileChannelUtil
-import nu.peg.fhk2.verify.Verifier
+import nu.peg.fhk2.verify.internal.Verifier
 import java.nio.channels.FileChannel
 import java.nio.file.Files
 import java.nio.file.Path

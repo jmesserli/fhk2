@@ -4,7 +4,7 @@ package nu.peg.fhk2.util
  * By joel @ 19.11.2016
  */
 object FileSizeParser {
-    val suffixMultipliers: Map<Char, Double> = mapOf(
+    private val suffixMultipliers: Map<Char, Double> = mapOf(
             'k' to factor(1) / 8,
             'K' to factor(1),
             'm' to factor(2) / 8,

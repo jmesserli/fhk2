@@ -13,6 +13,14 @@
         <main.class>nu.peg.fhk2.AppKt</main.class>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>pegnu-pkg</id>
+            <name>PegNu Package Repository</name>
+            <url>https://pkg.pegnu.cloud/repository/m2/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

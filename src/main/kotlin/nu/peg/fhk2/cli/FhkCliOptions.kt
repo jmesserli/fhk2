@@ -17,11 +17,16 @@ fun getOptions(): Options {
             .desc("Puts the program into 'merge' mode")
             .build()
 
+    val listDigests = Option.builder("l")
+            .longOpt("list-algorithms")
+            .desc("Lists all available hashing algorithms")
+            .build()
 
-    val cutMergeGroup = OptionGroup()
-    cutMergeGroup.isRequired = true
-    cutMergeGroup.addOption(cut)
-    cutMergeGroup.addOption(merge)
+    val mainGroup = OptionGroup()
+    mainGroup.isRequired = true
+    mainGroup.addOption(cut)
+    mainGroup.addOption(merge)
+    mainGroup.addOption(listDigests)
 
     val deleteSource = Option.builder("d")
             .longOpt("delete-source")
@@ -33,13 +38,18 @@ fun getOptions(): Options {
             .desc("Generates a file containing a hash which allows to verify the merged file. In merge mode specifies that the file should be verified")
             .build()
 
+    val algorithm = Option.builder("h")
+            .longOpt("hashing-algorithm")
+            .hasArg()
+            .argName("hashing algorithm")
+            .desc("Specified which algorithm should be used when hashing a file for verification. Only used with -c and -v. Get a list of algorithms with -l")
+            .build()
+
     val file = Option.builder("f")
             .longOpt("file")
             .hasArg()
             .argName("file path")
-            .required()
             .desc("Specifies the file to be cut or a part of a cut file to be merged")
-            .type(String::class.java)
             .build()
 
     val size = Option.builder("s")
@@ -50,9 +60,10 @@ fun getOptions(): Options {
             .build()
 
 
-    options.addOptionGroup(cutMergeGroup)
+    options.addOptionGroup(mainGroup)
     options.addOption(deleteSource)
     options.addOption(verify)
+    options.addOption(algorithm)
     options.addOption(file)
     options.addOption(size)
 
