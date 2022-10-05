@@ -9,7 +9,7 @@
     <version>1.0.0</version>
 
     <properties>
-        <kotlin.version>1.0.5-2</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
         <main.class>nu.peg.fhk2.AppKt</main.class>
     </properties>
 
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.60</version>
+            <version>1.69</version>
         </dependency>
 
         <dependency>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>no.tornado</groupId>
             <artifactId>tornadofx</artifactId>
-            <version>1.5.7</version>
+            <version>1.7.0</version>
         </dependency>
 
         <dependency>
